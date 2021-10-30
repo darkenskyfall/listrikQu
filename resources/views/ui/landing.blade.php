@@ -14,15 +14,31 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+        <style>
+            .bd-placeholder-img {
+              font-size: 1.125rem;
+              text-anchor: middle;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              user-select: none;
+            }
+      
+            @media (min-width: 768px) {
+              .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+              }
+            }
+        </style>
+
     </head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#!"><img class="img-fluid" src="assets/img/logo.png" alt="..." /></a>
-                <a class="btn" href="#signup">Benefits</a>
-                <a class="btn" href="#signup">Tentang</a>
-                <a class="btn" href="#signup">Download</a>
+                <a class="btn" href="#benefit">Benefits</a>
+                <a class="btn" href="#about">Tentang</a>
                 <a class="btn" href="#signup">Team</a>
                 <a class="btn" href="#signup">Kontak</a>
             </div>
@@ -77,7 +93,7 @@
             </div>
         </header>
         <!-- Icons Grid-->
-        <section class="features-icons bg-light text-center">
+        <section class="features-icons bg-light text-center" id="benefit">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4">
@@ -106,7 +122,7 @@
         </section>
         
         <!-- Image Showcases-->
-        <section class="showcase">
+        <section class="showcase" id="about">
             <div class="container-fluid p-0">
                 <div class="row g-0">
                     <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/a1.jpeg')"></div>
@@ -132,6 +148,31 @@
                     </div>
                 </div>
             </div>
+        </section>
+        <!-- Katalog-->
+        <section>
+            <div class="album py-5 bg-light">
+                <div class="container">
+                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    @foreach ($catalogues as $catalogue)
+                    <div class="col">
+                        <div class="card shadow-sm">
+                          <img src="{{ url('images/'.$catalogue->image_url) }}" class="rounded mx-auto d-block w-100" alt="..." style="height: 225px">
+                          <div class="card-body">
+                            <h3 class="card-text">{{ $catalogue->name }}</h3>
+                            
+                            <p class="card-text">{{ $catalogue->description }}</p>
+                            <p class="card-text">Rp. {{ $catalogue->price }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <small class="text-muted">{{ \Carbon\Carbon::parse($catalogue->created_at)->format('d M Y H:i')}}</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+              </div>
         </section>
         <!-- Testimonials-->
         <section class="testimonials text-center bg-light">
@@ -212,7 +253,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <ul class="list-inline mb-2">
+                        {{-- <ul class="list-inline mb-2">
                             <li class="list-inline-item"><a href="#!">Tentang</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Kontak</a></li>
@@ -220,7 +261,7 @@
                             <li class="list-inline-item"><a href="#!">Syarat Penggunaan</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Kebijakan Privasi</a></li>
-                        </ul>
+                        </ul> --}}
                         <p class="text-muted small mb-4 mb-lg-0">&copy; ListrikQu 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
